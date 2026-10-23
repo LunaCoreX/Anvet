@@ -1,6 +1,0 @@
-# GitHub Pages (Jekyll): estes itens ficam no repositório, mas não são publicados no site.
-exclude:
-  - docs
-  - build
-  - README.md
-  - .gitignore
