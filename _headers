@@ -1,0 +1,38 @@
+# Configuração PREPARADA, não ativa.
+# Formato de Netlify e Cloudflare Pages. O GitHub Pages IGNORA este arquivo:
+# lá todos os arquivos saem com "cache-control: max-age=600" e sem CSP.
+# Detalhes e cabeçalhos medidos em docs/hospedagem-e-cabecalhos.md.
+# Os caminhos consideram o site publicado na raiz de um domínio próprio.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  X-Frame-Options: DENY
+  Content-Security-Policy: default-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self'; script-src 'self'; connect-src 'self'; manifest-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests
+
+# HTML: sempre revalidar (nunca cache imutável)
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+# CSS e JS versionados no nome (site.v1.css). Ao mudar o conteúdo, mude o nome.
+/assets/css/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Fontes: arquivos fixos; trocar = arquivo com nome novo
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Imagens, vídeos e capas NÃO são versionados no nome: cache moderado
+/assets/images/*
+  Cache-Control: public, max-age=604800
+/assets/videos/*
+  Cache-Control: public, max-age=604800
+/assets/posters/*
+  Cache-Control: public, max-age=604800
+/assets/icons/*
+  Cache-Control: public, max-age=604800
